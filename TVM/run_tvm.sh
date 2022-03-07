@@ -1,5 +1,5 @@
 
-for model_name in resnet50 vgg16 ownmodel
+for model_name in resnet50 vgg16 ownmodel resnet101
     do
     echo "\n\n Using $model_name"
     python tvm_explore.py --create-model $model_name --infe-batch 64 --only-train
