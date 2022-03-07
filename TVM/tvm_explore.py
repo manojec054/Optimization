@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import sys
-sys.path.append("/home/hno1kor/CodeBase/General/tvm/python")
+sys.path.append("~/tvm/python")
 
 import os
 os.environ["PATH"] = os.environ["PATH"]+":/usr/local/cuda/bin/"

@@ -275,7 +275,7 @@ def evaluate():
         actual_labels.clear()
 
         train, test = tf.keras.datasets.cifar10.load_data()
-        test_ds = tf.data.Dataset.from_tensor_slices(test).batch(TEST_BATCH).take(100).shuffle(test_total_samples, seed=seed).repeat(1)
+        test_ds = tf.data.Dataset.from_tensor_slices(test).batch(TEST_BATCH).take(5000).shuffle(test_total_samples, seed=seed).repeat(1)
         for i, (test_img, test_label) in tqdm(enumerate(test_ds), desc=f'{itr_column}'):
             if test_img.shape == (TEST_BATCH, 32, 32, 3):
                 test_label = test_label.numpy().reshape(TEST_BATCH,)
