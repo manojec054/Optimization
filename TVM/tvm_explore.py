@@ -53,7 +53,7 @@ class MetaData():
             [transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  
 
-        #self.sample_to_take = 10000
+        self.sample_to_take = 10000
 
         if self.TEST_BATCH > 50:
             self.sample_to_take = 2000
