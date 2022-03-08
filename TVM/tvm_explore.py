@@ -51,17 +51,24 @@ class MetaData():
         # Loads CIFAR10 dataset.
         self.transform = transforms.Compose(
             [transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])        
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  
+
+        #self.sample_to_take = 10000
+
+        if self.TEST_BATCH > 50:
+            self.sample_to_take = 2000
+
 
         self.trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                                 download=True, transform=self.transform)
-        self.trainsubset = torch.utils.data.Subset(self.trainset, range(0,100))
+        
+        self.trainsubset = torch.utils.data.Subset(self.trainset, range(0, 100))
         self.trainloader = torch.utils.data.DataLoader(self.trainsubset, batch_size=self.TRAIN_BATCH_SIZE,
                                                 shuffle=True, num_workers=2)
 
         self.testset = torchvision.datasets.CIFAR10(root='./data', train=False,
                                             download=True, transform=self.transform)
-        self.testsubset = torch.utils.data.Subset(self.testset, range(0,5000))
+        self.testsubset = torch.utils.data.Subset(self.testset, range(0,self.sample_to_take))
         self.testloader = torch.utils.data.DataLoader(self.testsubset, batch_size=self.TEST_BATCH,
                                                 shuffle=False, num_workers=2)
 
@@ -185,7 +192,7 @@ class PlayGround():
                 start = time.time()
                 out = model(inputs)
                 end = time.time()
-                inference_time.append((end-start))
+                inference_time.append((end-start)/self.params.TEST_BATCH)
             
             results[str(iteration) + "_time"] = inference_time
 
@@ -211,7 +218,7 @@ class PlayGround():
             input_name = "input1"
             shape_list = [(input_name, (self.params.TEST_BATCH,3,self.params.height,self.params.width))]
             md, model_params = tvm.relay.frontend.pytorch.from_pytorch(model, shape_list, default_dtype="float32")
-            target = tvm.target.cuda(arch='sm_61')
+            target = tvm.target.Target("cuda", host="llvm")
             dev = tvm.cuda(0)
 
             with tvm.transform.PassContext(opt_level=3):
@@ -235,7 +242,7 @@ class PlayGround():
                 end_t = time.time()
                 # Get outputs
                 tvm_output = model_graph.get_output(0)
-                inference_time.append((end_t - start_t))
+                inference_time.append((end_t - start_t)/self.params.TEST_BATCH)
             
             results = pd.DataFrame()
             results["0_time"] = inference_time

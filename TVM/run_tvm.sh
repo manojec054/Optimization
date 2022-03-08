@@ -1,5 +1,7 @@
+export TVM_HOME=~/tvm
+export PYTHONPATH=$TVM_HOME/python:${PYTHONPATH}
 
-for model_name in resnet50 vgg16 ownmodel resnet101
+for model_name in resnet50 resnet101
     do
     echo "\n\n Using $model_name"
     python tvm_explore.py --create-model $model_name --infe-batch 64 --only-train
