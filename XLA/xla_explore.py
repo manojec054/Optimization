@@ -263,7 +263,7 @@ def evaluate():
             validation_split=0,
             seed=123,
             image_size=(224, 224),
-            batch_size=TEST_BATCH).repeat(1)       
+            batch_size=TEST_BATCH).repeat(5)       
         
 
         print(f"### len = {len(list(test_ds))}")
