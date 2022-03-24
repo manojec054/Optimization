@@ -235,7 +235,7 @@ def warmup(model):
 
 def evaluate():
     print("#### Evaluation Started ####")
-    model_path = '/home/hno1kor/CodeBase/General/hpc_poc/product/benchmark/XLA/saved_model'
+    model_path = './saved_model'
     layer = tf.keras.models.load_model(model_path)
 
     import numpy as np
@@ -329,7 +329,7 @@ def get_stats(csv_file):
 def tf_evaluate(run_time_eval_model = None):
 
     test_ds = tf.keras.utils.image_dataset_from_directory(
-            "/home/hno1kor/Downloads/Dataset/validation",
+            os.path.join(args.dir_path, 'validation'),
             validation_split=0,
             seed=123,
             image_size=(224, 224),
