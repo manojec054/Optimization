@@ -1,8 +1,6 @@
 import torch
 import time
 import numpy as np
-import tvm.relay as relay
-import tvm
 import argparse
 import pandas as pd
 import torch.cuda.profiler as profiler
@@ -75,7 +73,6 @@ def matrix_cal(shape):
         end = time.time()
         time_sync_api.append((end-start)*1000)
 
-        tvm.ma
 
 
     print(f"Using TORCH Profile = {np.array(torch_profile).mean()}ms")
