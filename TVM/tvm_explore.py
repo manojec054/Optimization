@@ -394,7 +394,6 @@ def tvm_benchmark(model, common_obj:CommonData):
                     lib = relay.build(mod, target=target, params=params)
         else:            
             log_file = log_prefix + ".kernel.log"
-            log_file = "/home/hno1kor/CodeBase/General/TLCBench/tmp_logs/autotvm/t4/resnet_50-B1-float32.kernel.log"
 
             print(f"READING EXISTING LOG FILE {log_file}")
             history_best_context = tvm.autotvm.apply_history_best(log_file)
@@ -487,6 +486,8 @@ if __name__ == "__main__":
                         help="Set the batch size used in inference", type=int)
     parser.add_argument('--cuda-arch', default='sm_61',
                         help="Set the batch size used in inference", type=str)
+    parser.add_argument('--benchmark-tvm', action='store_true', default=False,
+                        help='set true to enable autotune and benchmark')
 
     args = parser.parse_args()
 
@@ -495,8 +496,13 @@ if __name__ == "__main__":
     pt_model = run_pytorch_inference(obj)
     torch.save(pt_model, os.path.join(obj.model_save_path, 'resnet50.pt'))
 
-    mod, module = run_tvm_inference(pt_model, obj)
-    #mod, module = tvm_benchmark(pt_model, obj)
+    if args.benchmark_tvm:
+        print("TUNING AND BENCHMARKING")
+        mod, module = tvm_benchmark(pt_model, obj)
+    else:
+        mod, module = run_tvm_inference(pt_model, obj)
+
+
 
     #from tvm_viz import visualize
     #visualize(mod['main'])  # convert to png using dot -Tpng tvm_graph.dot > tvm_tvm.png
