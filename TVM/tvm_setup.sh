@@ -1,5 +1,5 @@
-# https://github.com/manojec054/Optimization.git
-# sudo apt-get install llvm-10*
+git clone https://github.com/manojec054/Optimization.git
+sudo apt-get install llvm-10*
 
 cd ~
 git clone --recursive https://github.com/apache/tvm tvm

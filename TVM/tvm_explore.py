@@ -1,170 +1,142 @@
-from ast import arg
-from numpy import dtype
+from PIL import Image
+import numpy as np
+import tvm.relay as relay
+import tvm
+from tvm.contrib import graph_executor
 import torch
 import torchvision
-import torchvision.transforms as transforms
-import os
 import time
-import argparse
 import pandas as pd
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-import sys
-sys.path.append("~/tvm/python")
+from scipy.special import softmax
+import random
+import torchvision.transforms as transforms
+import glob
+import tqdm
+import argparse
 
 import os
 os.environ["PATH"] = os.environ["PATH"]+":/usr/local/cuda/bin/"
+os.environ["TVM_HOME"] = "~/CodeBase/General/tvm"
 
-import tvm
-from tvm import relay
-from tvm.contrib import graph_executor
-
-assert(torch.cuda.is_available())
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-class MetaData():
-    def __init__(self, test_batch, model_name, tvm_enable) -> None:
-        pass
-
-        # Number of distinct number labels, [0..9]
-        self.NUM_CLASSES = 10
-        self.samples = 100000
-        self.seed = 10
-        self.width = 32
-        self.height = 32
-        self.tvm_enable = tvm_enable
-
-        # Number of examples in each training batch (step)
-        self.TRAIN_BATCH_SIZE = 16
-        self.TEST_BATCH = test_batch
-        self.epochs = 10
-        self.test_iteration = 1
-
-        # Number of training steps to run
-        self.TRAIN_STEPS = 1000
-
-        self.model_path = './saved_model'
-
-        # Loads CIFAR10 dataset.
+class AnimalClassification():
+    def __init__(self, testbatch, img_shape=224, trainbatch=16) -> None:
+        self.width = img_shape
+        self.height = img_shape
+        self.outfeatures = 3
+        
         self.transform = transforms.Compose(
             [transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  
-
-        self.sample_to_take = 10000
-
-        if self.TEST_BATCH > 50:
-            self.sample_to_take = 2000
-
-
-        self.trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                                download=True, transform=self.transform)
         
-        self.trainsubset = torch.utils.data.Subset(self.trainset, range(0, 100))
-        self.trainloader = torch.utils.data.DataLoader(self.trainsubset, batch_size=self.TRAIN_BATCH_SIZE,
-                                                shuffle=True, num_workers=2)
+        self.my_preprocess = transforms.Compose(
+            [
+                transforms.Resize(self.height),
+                transforms.CenterCrop(self.height),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            ]
+        )
 
-        self.testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                            download=True, transform=self.transform)
-        self.testsubset = torch.utils.data.Subset(self.testset, range(0,self.sample_to_take))
-        self.testloader = torch.utils.data.DataLoader(self.testsubset, batch_size=self.TEST_BATCH,
-                                                shuffle=False, num_workers=2)
+        self.my_preprocess2 = transforms.Compose(
+            [
+                transforms.Resize(self.height),
+                transforms.ToTensor(),
+                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+            ]
+        )
 
-        self.classes = ('plane', 'car', 'bird', 'cat',
-                'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+        dt_training_path = os.path.join(CommonData().curdir_path, '..', 'Dataset', 'training')
+        self.traindata = CustomAnimalClassLoader(dt_training_path)
+        self.trainloader = torch.utils.data.DataLoader(self.traindata, batch_size=trainbatch,
+                                                shuffle=False, num_workers=10)
 
-        self.model_name = model_name
-        self.model_path = f'./saved_model/cifar_net_{self.model_name}.pt'
-        if self.tvm_enable:
-            self.tvm_status = 'enabled'
-        else:
-            self.tvm_status = 'disabled'
+        dt_validation_path = os.path.join(CommonData().curdir_path, '..', 'Dataset', 'validation')
+        self.testdata = CustomAnimalClassLoader(dt_validation_path)
+        self.testloader = torch.utils.data.DataLoader(self.testdata, batch_size=testbatch,
+                                                shuffle=False, num_workers=10)
 
-class ModelPool():
-    def __init__(self, params) -> None:
-        self.params = params
+class CustomAnimalClassLoader(torch.utils.data.Dataset):
+    def __init__(self, img_dir, img_shape=224):
+        super().__init__()
+        self.img_dir = img_dir
 
-    def create_vgg16(self):
-        model = torchvision.models.vgg16(pretrained=True)
-        return model.to(device)
+        self.images = []
+        self.labels = []
+        self.img_shape = img_shape
 
-    def create_resnet50(self):
-        model = torchvision.models.resnet50(pretrained=True)
-        return model.to(device)
+        self.class_map = {0:'Cheetah', 1:'Hyena', 2:'Tiger'}
+        for i, cl in self.class_map.items():
+            each_path = os.path.join(self.img_dir, cl, '*')
+            te_img = glob.glob(each_path, recursive=False)
+            self.images.extend(te_img)
 
-    def create_resnet101(self):        
-        model = torchvision.models.resnet101(pretrained=True)
-        return model.to(device)
-
-
-    def generate_model(self):
-        class Net(nn.Module):
-            def __init__(self):
-                super().__init__()
-                self.conv1 = nn.Conv2d(3, 6, 5)
-                self.pool = nn.MaxPool2d(2, 2)
-                self.conv2 = nn.Conv2d(6, 16, 5)
-                self.fc1 = nn.Linear(16 * 5 * 5, 120)
-                self.fc2 = nn.Linear(120, 84)
-                self.fc3 = nn.Linear(84, 10)
-
-            def forward(self, x):
-                x = self.pool(F.relu(self.conv1(x)))
-                x = self.pool(F.relu(self.conv2(x)))
-                x = torch.flatten(x, 1)  # flatten all dimensions except batch
-                x = F.relu(self.fc1(x))
-                x = F.relu(self.fc2(x))
-                x = self.fc3(x)
-                return x
+            le_img = list(np.ones(len(te_img)) * i)
+            self.labels.extend(le_img)
+            print(f"Found {len(te_img)} images in class {cl}")
         
-        model = Net().to(device)
-        return model
+        for i in range(len(self.images)):
+            if not self.class_map[self.labels[i]] in self.images[i]:
+                print(f"{i} : {self.labels[i]}  {self.class_map[self.labels[i]]}   {self.images[i]}")
+                raise "error"
+        
+        random.seed(100)
+        random.shuffle(self.images)
+        random.seed(100)
+        random.shuffle(self.labels)
 
-class PlayGround():
-    def __init__(self, params:MetaData) -> None:
-        self.params = params
+        for i in range(len(self.images)):
+            if not self.class_map[self.labels[i]] in self.images[i]:
+                print(f"{i} : {self.labels[i]}  {self.class_map[self.labels[i]]}   {self.images[i]}")
+                raise "error"
 
-    def train(self, model):
-        global model_name
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-
-        for epoch in tqdm(range(self.params.epochs)):  # loop over the dataset multiple times
-            running_loss = 0.0
-            for i, data in enumerate(self.params.trainloader, 0):
-                # get the inputs; data is a list of [inputs, labels]
-                inputs, labels = data
-                inputs, labels = data[0].to(device), data[1].to(device)
-
-                # zero the parameter gradients
-                optimizer.zero_grad()
-
-                # forward + backward + optimize
-                outputs = model(inputs)
-                loss = criterion(outputs, labels)
-                loss.backward()
-                optimizer.step()
-
-                # print statistics
-                running_loss += loss.item()
-                if i % 2000 == 1999:    # print every 2000 mini-batches
-                    print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
-                    running_loss = 0.0
-                    
-                break
-                    
-        input_shape = [self.params.TRAIN_BATCH_SIZE, 3, self.params.width, self.params.height]
-        input_data = torch.randn(input_shape).to(device)
-        scripted_model = torch.jit.trace(model, input_data).eval()
-        #scripted_model = torch.jit.script(model)
-        scripted_model.save(self.params.model_path)
-        return scripted_model
+        assert(len(self.images)==len(self.labels))
     
+    def __len__(self):
+        return len(self.images)
+    
+    def __getitem__(self, index):
+        my_preprocess2 = transforms.Compose(
+                    [
+                        transforms.Resize(self.img_shape),
+                        transforms.ToTensor(),
+                        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+                    ]
+                )
+                
+        pil_img = Image.open(self.images[index])
+        img = my_preprocess2(pil_img)
+        lbl = torch.tensor(self.labels[index], dtype=torch.long)
+        filename = self.images[index]
+
+        return img, lbl, filename    
+
+class CommonData():
+    def __init__(self, cuda_arch="sm_61", batch=8, model_name='resnet50') -> None:
+        self.batch = batch
+        self.auto_schedule = False
+        self.use_mxnet = False
+        self.use_time_api = True
+        self.use_benchmark = True
+        if self.use_benchmark:
+            print("Using Benchmarking API")
+        else:
+            if(self.use_time_api):
+                print("Using time API")
+            else:
+                print("Cuda event API")
+        self.auto_tune = True
+        self.model_name = model_name
+        self.cuda_arch = cuda_arch
+        self.curdir_path = os.path.dirname(os.path.realpath(__file__))
+        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+        self.model_save_path = os.path.join(self.curdir_path, 'saved_model')
+        if not os.path.exists(self.model_save_path):
+            os.mkdir(self.model_save_path)
+
     def warmup(self, model):
-        random_gen_img = torch.rand(self.params.TEST_BATCH, 3, self.params.width, self.params.height)
-        random_gen_img =  random_gen_img.to(device)
+        print("torch model warmup stage...")
+        random_gen_img = torch.rand(self.batch, 3, 224, 224)
+        random_gen_img =  random_gen_img.to(self.device)
         warmup_itr = 5
         for _ in range(warmup_itr):
             model(random_gen_img)
@@ -172,131 +144,359 @@ class PlayGround():
         return model
 
     def tvm_warmup(self, model):
-        random_gen_img = torch.rand(self.params.TEST_BATCH, 3, self.params.width, self.params.height)
+        print("tvm model warmup stage...")
+        random_gen_img = torch.rand(self.batch, 3, 224, 224)
         #random_gen_img =  random_gen_img.to(device)
         warmup_itr = 5
         for _ in range(warmup_itr):
-            model.set_input("input1", tvm.nd.array(random_gen_img.numpy()))
+            model.set_input("data", tvm.nd.array(random_gen_img.numpy()))
             model.run()
 
         return model
-    
-    def inference(self, model):
-        inference_time = []
-        results = pd.DataFrame()
-
-        for iteration in range(self.params.test_iteration):
-            for i, data in tqdm(enumerate(self.params.testloader)):
-                input, labels = data 
-                inputs, labels = data[0].to(device), data[1].to(device)
-                start = time.time()
-                out = model(inputs)
-                end = time.time()
-                inference_time.append((end-start)/self.params.TEST_BATCH)
-            
-            results[str(iteration) + "_time"] = inference_time
-
-            
-        dataframe_name = f'TVM_{self.params.tvm_status}_{self.params.model_name}_bch{str(self.params.TEST_BATCH)}.csv'
-
-        results.to_csv(dataframe_name)
-        print("Data is saved in ", dataframe_name)
-        self.get_stats(dataframe_name)
-
-    def evaluate(self, model):
-        print("#### Evaluation Started ####")
-        if self.params.tvm_enable:
-            model.eval()
-
-            # TODO Check set_input on gpu data
-            # explore other options of PassContext
-            # explore https://tvm.apache.org/docs/tutorial/autotvm_relay_x86.html
-            # https://discuss.tvm.apache.org/t/whats-the-difference-between-build-and-create-executor-in-tvm-relay-build-module/1967/5
-            # Use create_executor instead of build https://tvm.apache.org/docs/how_to/compile_models/from_keras.html
-
-            #shape_list = [(i.debugName().split('.')[0], i.type().sizes()) for i in  list(model.graph.inputs())[1:]]
-            input_name = "input1"
-            shape_list = [(input_name, (self.params.TEST_BATCH,3,self.params.height,self.params.width))]
-            md, model_params = tvm.relay.frontend.pytorch.from_pytorch(model, shape_list, default_dtype="float32")
-            target = tvm.target.Target("cuda", host="llvm")
-            dev = tvm.cuda(0)
-
-            with tvm.transform.PassContext(opt_level=3):
-                lib = relay.build(md, target=target, params=model_params)
-            
-            model_graph = graph_executor.GraphModule(lib["default"](dev))
-
-            model_graph = self.tvm_warmup(model_graph)
-
-            inference_time = []
-
-            for i, data in tqdm(enumerate(self.params.testloader)):
-                input, labels = data 
-                if input.shape != (self.params.TEST_BATCH,3, self.params.height,self.params.width):
-                    print(f"Last batch of size {input.shape} ignored")
-                    break
-
-                model_graph.set_input(input_name, tvm.nd.array(input.numpy()))
-                start_t = time.time()
-                model_graph.run()
-                end_t = time.time()
-                # Get outputs
-                tvm_output = model_graph.get_output(0)
-                inference_time.append((end_t - start_t)/self.params.TEST_BATCH)
-            
-            results = pd.DataFrame()
-            results["0_time"] = inference_time
-            dataframe_name = f'TVM_{self.params.tvm_status}_{self.params.model_name}_bch{str(self.params.TEST_BATCH)}.csv'
-            results.to_csv(dataframe_name)
-            print("Data is saved in ", dataframe_name)
-            self.get_stats(dataframe_name)
-
-        else:
-            model.eval()
-            model = self.warmup(model)
-            self.inference(model)
-
 
     def get_stats(self, csv_file):
         trace_d = pd.read_csv(csv_file)
         trace_d.drop(axis=1, inplace=True, index=0)
         time_columns = [col for col in trace_d.columns if 'time' in col]
         mean_time = trace_d[time_columns].mean().mean()
-        print(f"Inference took {mean_time * 1000}ms")
+        print(f"Inference took {mean_time}ms")
 
+def run_pytorch_inference(common_obj:CommonData):
+    print("\n#### PYTORCH Inference start ####")
+    model = torchvision.models.resnet50(pretrained=True)
+    in_features = model.fc.in_features
+    for layer in model.parameters():
+        layer.requires_grad = False
+    
+    model.fc = torch.nn.Linear(in_features=2048, out_features=3)
+    model = model.to(common_obj.device) 
+    model.eval()
+    csv_name = f"TVM_disabled_{common_obj.model_name}_bch{common_obj.batch}.csv"
+    inference_time = []
+    predictions = []
+    filename = []
+    results = pd.DataFrame()
+
+    #warmup stage
+    model = common_obj.warmup(model) 
+
+    dls = AnimalClassification(common_obj.batch)
+    count = 0
+    for data, labels_, files in tqdm.tqdm(dls.testloader):
+        data = data.to(common_obj.device)
+        labels_ = labels_.to(common_obj.device)
+        if(data.shape[0] != common_obj.batch):
+            print("Ignored bath size ", data.shape)
+            break
+        count = count + 1
+
+        start = torch.cuda.Event(enable_timing=True)
+        end = torch.cuda.Event(enable_timing=True)
+        torch.cuda.synchronize()
+        start.record()
+        with torch.no_grad():
+            res = model(data)
+
+        """torch.cuda.synchronize()
+        with torch.autograd.profiler.profile(use_cuda=True) as prof:
+            res = model(data)
+        print("prof ----->",prof.key_averages().table(sort_by='cuda_time_total'))"""
+        end.record()
+
+        # Waits for everything to finish running
+        torch.cuda.synchronize()
+
+        inference_time.append((start.elapsed_time(end))/data.shape[0]) # adding time in millisecond
+        scores = softmax(res.cpu().detach().numpy(), axis=-1)
+        predictions.append(scores)
+        filename.append(files)
+                    
+    results[str(count) + "_time"] = inference_time
+    results[str(count) + "_conf"] = predictions
+    results[str(count) + "_files"] = filename
+    results.to_csv(csv_name)
+    common_obj.get_stats(csv_name)
+    print("#### PYTORCH Inference ends ####")
+    return model    
+
+def run_tvm_inference(model, common_obj:CommonData):
+    print("\n#### TVM Inference start ####")
+    csv_name = f"TVM_enabled_{common_obj.model_name}_bch{common_obj.batch}.csv"
+    inference_time = []
+    predictions = []
+    filename = []
+    results = pd.DataFrame()
+
+    dls = AnimalClassification(common_obj.batch)
+    input_data = torch.randn((common_obj.batch,3,224,224))
+    scripted_model = torch.jit.trace(model.cpu(), input_data)
+
+    # Save scripted model
+    #scripted_model.save('./saved_model/scripted_model_resnet50.pt')
+
+    target = tvm.target.cuda(arch=common_obj.cuda_arch)
+    input_name = "data"
+    shape_dict = [(input_name, (common_obj.batch,3,224,224))]
+
+    if common_obj.use_mxnet:
+        print("Using mxnet models")
+        import mxnet
+        name = "resnet_50"
+
+        n_layer = int(name.split("_")[1])
+        block = mxnet.gluon.model_zoo.vision.get_resnet(1, n_layer, pretrained=True)
+        mod, params = relay.frontend.from_mxnet(
+            block, shape={"data": (common_obj.batch,3,224,224)}, dtype="float32"
+        )
+    else:
+        mod, params = relay.frontend.from_pytorch(scripted_model, shape_dict)
+    
+
+    with tvm.transform.PassContext(opt_level=3):
+        lib = relay.build(mod, target=target, params=params)
+
+    dev = tvm.device(str(target), 0)
+    module = graph_executor.GraphModule(lib["default"](dev))
+    count = 0
+
+    for data, labels_, files in tqdm.tqdm(dls.testloader):
+        if(data.shape[0] != common_obj.batch):
+            print("Ignored bath size ", data.shape)
+            break
+        count = count + 1
+        dtype = "float32"
+        module.set_input(input_name, data)
+        output_shape = (data.shape[0], 3)
+        if common_obj.use_benchmark:
+            ftimer = module.module.time_evaluator("run", tvm.cuda(0), min_repeat_ms=500, repeat=3)
+            res = np.array(ftimer().results) * 1000
+            print("Mean = ", np.mean(res/data.shape[0]))
+            inference_time.append(np.mean(res/data.shape[0]))
+            tvm_output = module.get_output(0).numpy()
+        else:
+            if common_obj.use_time_api:
+                start = time.time()
+                module.run()
+                tvm_output = module.get_output(0)
+                torch.cuda.synchronize()
+                end = time.time()
+                tvm_output = tvm_output.numpy()
+                inference_time.append((end-start)/data.shape[0])
+            else:            
+                start = torch.cuda.Event(enable_timing=True)
+                end = torch.cuda.Event(enable_timing=True)
+                start.record()
+                module.run()
+                end.record()      
+                end.synchronize() 
+                tvm_output = module.get_output(0)
+                tvm_output = tvm_output.numpy()
+                inference_time.append((start.elapsed_time(end))/data.shape[0]) # adding time in millisecond
+
+        scores = softmax(tvm_output, axis=-1)
+        predictions.append(scores)
+        filename.append(files)
+
+        
+    results[str(count) + "_time"] = inference_time
+    results[str(count) + "_conf"] = predictions
+    results[str(count) + "_files"] = filename
+    results.to_csv(csv_name)
+    common_obj.get_stats(csv_name)
+    print("#### TVM Inference start ####")   
+    return mod, module 
+
+def autoschedule(mod, params, target):
+    
+    log_file = "auto-tune.json"
+    if os.path.exists(log_file):
+        print(f"{log_file} found!. Reusing it ...")
+        with tvm.auto_scheduler.ApplyHistoryBest(log_file):
+            with tvm.transform.PassContext(opt_level=3, config={"relay.backend.use_auto_scheduler": True}):
+                lib = relay.build(mod, target=target, params=params)
+        return lib   
+
+    
+    #image_shape = (self.params.width, self.params.height, 3)
+    #output_shape = (self.params.TEST_BATCH, 10)
+    #input_shape = (self.params.TEST_BATCH,) + image_shape
+
+    tasks, task_weights = tvm.auto_scheduler.extract_tasks(mod["main"], params, target)
+    for idx, task in enumerate(tasks):
+        print("========== Task %d  (workload key: %s) ==========" % (idx, task.workload_key))
+        print(task.compute_dag)
+    
+    print("Begin tuning...")
+    measure_ctx = tvm.auto_scheduler.LocalRPCMeasureContext(repeat=1, min_repeat_ms=300, timeout=10)
+
+    tuner = tvm.auto_scheduler.TaskScheduler(tasks, task_weights)
+    tune_option = tvm.auto_scheduler.TuningOptions(
+        num_measure_trials=200,  # change this to 20000 to achieve the best performance
+        runner=measure_ctx.runner,
+        measure_callbacks=[tvm.auto_scheduler.RecordToFile(log_file)],
+    )
+
+    tuner.tune(tune_option)
+    print("Compile...")
+    with tvm.auto_scheduler.ApplyHistoryBest(log_file):
+        with tvm.transform.PassContext(opt_level=3, config={"relay.backend.use_auto_scheduler": True}):
+            lib = relay.build(mod, target=target, params=params)
+    
+    return lib
+
+def tvm_benchmark(model, common_obj:CommonData):
+    print("\n#### TVM Benchmark start ####")
+    csv_name = f"TVM_enabled_{common_obj.model_name}_bch{common_obj.batch}.csv"
+    inference_time = []
+    predictions = []
+    filename = []
+    results = pd.DataFrame()
+
+    dls = AnimalClassification(common_obj.batch)
+    input_data = torch.randn((common_obj.batch,3,224,224))
+    scripted_model = torch.jit.trace(model.cpu(), input_data)
+
+    target = tvm.target.cuda(arch=common_obj.cuda_arch)
+    input_name = "data"
+    shape_dict = [(input_name, (common_obj.batch,3,224,224))]
+
+    if common_obj.use_mxnet:
+        print("Using mxnet models")
+        import mxnet
+        name = "resnet_50"
+
+        n_layer = int(name.split("_")[1])
+        block = mxnet.gluon.model_zoo.vision.get_resnet(1, n_layer, pretrained=True)
+        mod, params = relay.frontend.from_mxnet(
+            block, shape={"data": (common_obj.batch,3,224,224)}, dtype="float32"
+        )
+    else:
+        mod, params = relay.frontend.from_pytorch(scripted_model, shape_dict)
+
+    if common_obj.auto_schedule:
+        print("#" * 50)
+        print("AUTO SCHEDULING ...")
+        print("#" * 50)
+        lib = autoschedule(mod, params, target)
+    elif common_obj.auto_tune:
+        inp = input("AUTO-TUNE WILL DELETE LOG FILES!!!. WHAT TO CONTINUE ?? (yes/no)")
+        log_prefix="autotunelogs"
+        log_file = log_prefix + ".kernel.log"
+        if (inp=='yes'):
+            print("#" * 50)
+            print("AUTO TUNING ...")
+            print("#" * 50)     
+            from tune_autotvm import autotvm_tune
+            autotvm_tune(mod, params, (common_obj.batch,3,224,224), log_prefix)
+            history_best_context = tvm.autotvm.apply_history_best(log_file)
+            with history_best_context:
+                with tvm.transform.PassContext(opt_level=3):
+                    lib = relay.build(mod, target=target, params=params)
+        else:            
+            log_file = log_prefix + ".kernel.log"
+            log_file = "/home/hno1kor/CodeBase/General/TLCBench/tmp_logs/autotvm/t4/resnet_50-B1-float32.kernel.log"
+
+            print(f"READING EXISTING LOG FILE {log_file}")
+            history_best_context = tvm.autotvm.apply_history_best(log_file)
+            with history_best_context:
+                with tvm.transform.PassContext(opt_level=3):
+                    lib = relay.build(mod, target=target, params=params)
+    else:
+        with tvm.transform.PassContext(opt_level=3):
+            lib = relay.build(mod, target=target, params=params)
+
+    dev = tvm.device(str(target), 0)
+    module = graph_executor.GraphModule(lib["default"](dev))
+    count = 0
+
+    module = common_obj.tvm_warmup(module)
+
+    for data, labels_, files in tqdm.tqdm(dls.testloader):
+        if(data.shape[0] != common_obj.batch):
+            print("Ignored bath size ", data.shape)
+            break
+        count = count + 1
+
+        data_tvm = tvm.nd.array(data.cpu().numpy().astype('float32'), tvm.cuda(0))
+        module.set_input("data", data_tvm)
+        #tvm_results = module.benchmark(device=tvm.cuda(0), func_name="run", repeat=3, min_repeat_ms=500)
+        #inference_time.append((tvm_results.mean/data.shape[0]) * 1000)
+        
+        ftimer = module.module.time_evaluator("run", tvm.cuda(0), min_repeat_ms=500, repeat=3)
+        res = np.array(ftimer().results) * 1000
+        print("Mean = ", np.mean(res/data.shape[0]))
+
+        inference_time.append(np.mean(res/data.shape[0]))
+
+        tvm_output = module.get_output(0).numpy()
+        scores = softmax(tvm_output, axis=-1)
+        predictions.append(scores)
+        filename.append(files)
+
+        #data_tvm = tvm.nd.array(data.cpu().numpy().astype('float32'), tvm.cuda(0))
+        #module.set_input("data", data_tvm)
+        #module.set_input(**{k:tvm.nd.array(v, tvm.cuda(0)) for k, v in params.items()})
+
+        #module.set_input(input_name, data)
+
+        # Evaluate
+        #print("Evaluate inference time cost...")
+        #https://tvm.apache.org/docs/reference/api/python/graph_executor.html#tvm.contrib.graph_executor.GraphModule.benchmark
+        #print(module.benchmark(device=tvm.cuda(0), func_name="run", repeat=3, min_repeat_ms=500, number=10))
+        #tvm_results = module.benchmark(device=tvm.cuda(0), func_name="run", repeat=5, min_repeat_ms=500, number=10)
+
+
+
+        # evaluate
+        #ftimer = module.module.time_evaluator("run", tvm.cuda(0), number=10, repeat=5)
+        #t = ftimer(data_tvm).results
+        #t = np.array(t) * 1000
+
+        #print('{} ms'.format(t.mean()))
+        #break
+
+        #prof_res = np.array(ftimer().results) * 1000  # multiply 1000 for converting to millisecond
+        #print("mean = ", np.mean(prof_res))
+        #print("std = ", np.std(prof_res))
+
+        """ output_shape = (data.shape[0], 3)
+        start = time.time()
+        module.run()
+        tvm_output = module.get_output(0)
+        end = time.time()
+        tvm_output = tvm_output.numpy()
+        inference_time.append((end-start)/data.shape[0])
+`
+        scores = softmax(tvm_output, axis=-1)
+        predictions.append(scores)
+        filename.append(files) 
+        break"""
+
+    results[str(count) + "_time"] = inference_time
+    results[str(count) + "_conf"] = predictions
+    results[str(count) + "_files"] = filename
+    results.to_csv(csv_name)
+    common_obj.get_stats(csv_name)
+
+    print("#### TVM Inference start ####")   
+    return mod, module 
 
 if __name__ == "__main__":
-    # python tvm_explore.py --create-model ownmodel --infe-batch 64
-    # python tvm_explore.py --create-model ownmodel --infe-batch 64 --tvm
     parser = argparse.ArgumentParser()
-    parser.add_argument('--tvm', action='store_true',
-                        default=False, help="Set true to enable jit_compiler")
-    parser.add_argument('--infe-batch', default=1,
+    parser.add_argument('--batch', default=8,
                         help="Set the batch size used in inference", type=int)
-    parser.add_argument('--only-train', action='store_true',
-                        default=False, help="Train to save model")
-    parser.add_argument('--create-model', default='resnet50',
-                        help='set which model to use for inference')
+    parser.add_argument('--cuda-arch', default='sm_61',
+                        help="Set the batch size used in inference", type=str)
+
     args = parser.parse_args()
 
-    metadata = MetaData(model_name=args.create_model, test_batch=args.infe_batch, tvm_enable=args.tvm)
-    modelpool = ModelPool(metadata)
+    obj = CommonData(batch=args.batch, cuda_arch=args.cuda_arch)
 
-    model_fn = {'resnet50': modelpool.create_resnet50,
-                'resnet101': modelpool.create_resnet101,
-                'vgg16': modelpool.create_vgg16,
-                'ownmodel': modelpool.generate_model
-                }
+    pt_model = run_pytorch_inference(obj)
+    torch.save(pt_model, os.path.join(obj.model_save_path, 'resnet50.pt'))
 
-    print("Using Moldel ", metadata.model_name)    
-    ground = PlayGround(metadata)
+    mod, module = run_tvm_inference(pt_model, obj)
+    #mod, module = tvm_benchmark(pt_model, obj)
 
-    if args.only_train:
-        model = model_fn[args.create_model]()
-        ground.train(model)
-    else:
-        model = torch.jit.load(metadata.model_path)        
-        ground.evaluate(model)
-
-
-
+    #from tvm_viz import visualize
+    #visualize(mod['main'])  # convert to png using dot -Tpng tvm_graph.dot > tvm_tvm.png
