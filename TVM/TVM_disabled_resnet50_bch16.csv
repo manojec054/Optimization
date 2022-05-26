@@ -1,64 +1,369 @@
-,0_time
-0,0.001113995909690857
-1,0.0010528564453125
-2,0.0006366223096847534
-3,0.0008382648229598999
-4,0.0006336569786071777
-5,0.0008391737937927246
-6,0.0006276965141296387
-7,0.0008366256952285767
-8,0.0006323456764221191
-9,0.0008418262004852295
-10,0.0006308406591415405
-11,0.0008445233106613159
-12,0.0006334483623504639
-13,0.0008445233106613159
-14,0.0006348639726638794
-15,0.000775456428527832
-16,0.0006345808506011963
-17,0.0006317496299743652
-18,0.0006319284439086914
-19,0.0006369948387145996
-20,0.0006366074085235596
-21,0.0006345659494400024
-22,0.000636667013168335
-23,0.0006348937749862671
-24,0.0006375908851623535
-25,0.0006362050771713257
-26,0.0006347298622131348
-27,0.0006341487169265747
-28,0.0006384849548339844
-29,0.0006340146064758301
-30,0.0006340146064758301
-31,0.0006380677223205566
-32,0.0006345212459564209
-33,0.0006365031003952026
-34,0.0006392449140548706
-35,0.0007187426090240479
-36,0.0006343275308609009
-37,0.0006356537342071533
-38,0.0006365776062011719
-39,0.0006375610828399658
-40,0.0006376802921295166
-41,0.0006384849548339844
-42,0.000638812780380249
-43,0.0006360709667205811
-44,0.0006403475999832153
-45,0.0006382763385772705
-46,0.0006377100944519043
-47,0.0006353408098220825
-48,0.0006361007690429688
-49,0.0006348937749862671
-50,0.0006359666585922241
-51,0.0006347596645355225
-52,0.0006366223096847534
-53,0.0006388276815414429
-54,0.0006386786699295044
-55,0.0006397366523742676
-56,0.0006389766931533813
-57,0.0006387680768966675
-58,0.0006372183561325073
-59,0.0006386935710906982
-60,0.0006379932165145874
-61,0.0006358176469802856
-62,0.001109689474105835
+,23_time,23_conf,23_files
+0,1.7403520345687866,"[[0.3844109  0.2953771  0.320212  ]
+ [0.34169888 0.35975322 0.2985479 ]
+ [0.27839428 0.4191729  0.30243263]
+ [0.4119919  0.2783988  0.30960935]
+ [0.4112416  0.3168794  0.27187908]
+ [0.33500835 0.3804448  0.28454685]
+ [0.37089384 0.26139477 0.36771137]
+ [0.32344478 0.33348396 0.3430713 ]
+ [0.37510696 0.31512448 0.30976844]
+ [0.31697214 0.43457654 0.2484514 ]
+ [0.3891044  0.29990566 0.31098986]
+ [0.326444   0.316916   0.35663998]
+ [0.33376062 0.33005053 0.33618888]
+ [0.39200318 0.28326416 0.32473272]
+ [0.3545268  0.3571233  0.28834984]
+ [0.3193021  0.31387356 0.36682433]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_070_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_333_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_473_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_054_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_256_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_899_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_088_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_853_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_006_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_874_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_042_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_039_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_097_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_032_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_078_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_079_val_resized.jpg')"
+1,1.5556479692459106,"[[0.38273516 0.31695852 0.30030647]
+ [0.36125392 0.33967918 0.29906693]
+ [0.32075202 0.39917633 0.2800716 ]
+ [0.34761956 0.32823268 0.32414773]
+ [0.34970725 0.33321127 0.3170816 ]
+ [0.34645504 0.33383557 0.31970945]
+ [0.32519406 0.29236203 0.3824438 ]
+ [0.3131532  0.36760664 0.31924006]
+ [0.35634968 0.27427858 0.36937174]
+ [0.3776715  0.3809642  0.24136426]
+ [0.4125345  0.23470458 0.35276094]
+ [0.3676051  0.2621989  0.37019604]
+ [0.29684025 0.40278998 0.30036974]
+ [0.36871794 0.31774774 0.31353438]
+ [0.3103309  0.25973192 0.4299371 ]
+ [0.2967018  0.3133701  0.38992804]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_016_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_016_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_272_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_055_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_835_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_001_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_302_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_179_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_013_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_025_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_521_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_631_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_690_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_325_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_456_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_506_resized.jpg')"
+2,1.526911973953247,"[[0.33061352 0.3811429  0.28824347]
+ [0.38543993 0.26511118 0.34944892]
+ [0.4207325  0.28974637 0.28952104]
+ [0.37313604 0.3638847  0.2629793 ]
+ [0.403818   0.2548927  0.3412893 ]
+ [0.41035876 0.29690686 0.29273435]
+ [0.399396   0.32265732 0.27794662]
+ [0.32656434 0.30308124 0.37035453]
+ [0.3170076  0.33083373 0.3521587 ]
+ [0.33330432 0.38640028 0.28029543]
+ [0.44716588 0.32562688 0.22720736]
+ [0.3574849  0.36566335 0.27685168]
+ [0.3013371  0.43145704 0.26720586]
+ [0.38074848 0.40055087 0.21870062]
+ [0.3891044  0.29990566 0.31098986]
+ [0.36377245 0.31437072 0.32185698]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_050_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_429_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_455_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_146_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_000_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_220_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_030_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_233_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_065_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_718_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_085_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_067_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_052_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_083_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_024_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_046_val_resized.jpg')"
+3,1.043455958366394,"[[0.30228186 0.38409397 0.3136242 ]
+ [0.39122102 0.23657857 0.3722004 ]
+ [0.3204748  0.40907857 0.2704466 ]
+ [0.3286372  0.34457737 0.32678536]
+ [0.3272839  0.4071866  0.26552954]
+ [0.3428385  0.37237743 0.28478405]
+ [0.35679248 0.32825166 0.31495592]
+ [0.382315   0.26953715 0.34814787]
+ [0.34342697 0.4181147  0.23845841]
+ [0.31725267 0.36309946 0.3196479 ]
+ [0.33119258 0.39172265 0.2770847 ]
+ [0.2687821  0.4085325  0.3226854 ]
+ [0.3337304  0.34837386 0.31789574]
+ [0.33879504 0.29165342 0.3695515 ]
+ [0.36173376 0.29659683 0.3416694 ]
+ [0.36774734 0.39603966 0.23621291]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_082_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_085_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_069_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_071_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_442_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_003_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_016_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_094_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_114_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_040_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_010_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_072_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_034_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_077_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_011_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_028_val_resized.jpg')"
+4,1.0551040172576904,"[[0.3936961  0.3528747  0.2534293 ]
+ [0.26761594 0.41779158 0.31459254]
+ [0.35924503 0.35387152 0.28688344]
+ [0.3434919  0.40131646 0.25519174]
+ [0.32388136 0.3935564  0.2825622 ]
+ [0.33677554 0.2644355  0.39878893]
+ [0.33196828 0.35770229 0.31032947]
+ [0.33797088 0.3626209  0.2994083 ]
+ [0.25611028 0.44173527 0.30215454]
+ [0.31213516 0.31897983 0.36888504]
+ [0.32444865 0.3809891  0.2945622 ]
+ [0.36013398 0.37139034 0.26847568]
+ [0.36274755 0.3832151  0.25403732]
+ [0.3241742  0.32620814 0.34961763]
+ [0.39252463 0.26292056 0.3445548 ]
+ [0.30483454 0.33400357 0.36116195]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_041_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_861_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_017_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_447_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_747_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_691_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_049_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_845_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_001_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_056_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_012_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_145_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_755_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_058_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_478_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_023_val_resized.jpg')"
+5,1.0407040119171143,"[[0.36959052 0.3710094  0.25940013]
+ [0.3916712  0.3646608  0.24366803]
+ [0.35118833 0.32426736 0.32454428]
+ [0.29018012 0.42221454 0.2876054 ]
+ [0.39182353 0.34389758 0.2642789 ]
+ [0.37882662 0.35780498 0.26336837]
+ [0.30570817 0.35821673 0.3360751 ]
+ [0.31380022 0.39086878 0.29533097]
+ [0.38099226 0.3051814  0.31382638]
+ [0.30496165 0.30599222 0.38904607]
+ [0.32589138 0.37487343 0.29923528]
+ [0.35782248 0.39036763 0.25180987]
+ [0.29520056 0.33934882 0.36545056]
+ [0.2865435  0.381073   0.33238348]
+ [0.32703486 0.27412444 0.3988407 ]
+ [0.33177084 0.35793436 0.31029484]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_090_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_548_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_061_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_043_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_758_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_674_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_138_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_658_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_000_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_093_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_027_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_035_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_070_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_583_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_062_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_077_val_resized.jpg')"
+6,1.0479999780654907,"[[0.36048636 0.25061285 0.38890076]
+ [0.41542488 0.3160687  0.26850638]
+ [0.46498045 0.31905404 0.21596548]
+ [0.29404423 0.3689884  0.33696735]
+ [0.25639328 0.40322867 0.3403782 ]
+ [0.42673963 0.28832603 0.28493434]
+ [0.30960685 0.41048816 0.27990493]
+ [0.333452   0.3713519  0.29519615]
+ [0.34287804 0.33495572 0.3221662 ]
+ [0.3369535  0.339522   0.32352448]
+ [0.39657286 0.29489157 0.30853555]
+ [0.38101044 0.3580213  0.26096818]
+ [0.33687696 0.26685274 0.3962703 ]
+ [0.40967414 0.32857242 0.2617535 ]
+ [0.3523127  0.3527431  0.2949442 ]
+ [0.40967947 0.31595233 0.2743681 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_081_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_095_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_062_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_066_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_013_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_034_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_054_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_094_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_004_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_017_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_144_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_057_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_364_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_662_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_087_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_321_resized.jpg')"
+7,1.0473599433898926,"[[0.3350085  0.37733787 0.28765363]
+ [0.36624297 0.37001202 0.26374504]
+ [0.45377976 0.2908499  0.25537032]
+ [0.51178133 0.27535087 0.21286778]
+ [0.32705754 0.34750172 0.32544076]
+ [0.3309792  0.3800457  0.28897494]
+ [0.25102973 0.4614695  0.28750074]
+ [0.35161173 0.28942627 0.35896197]
+ [0.3414557  0.3080388  0.35050556]
+ [0.34624594 0.36816406 0.28559008]
+ [0.36547613 0.3490595  0.28546447]
+ [0.35731873 0.3116631  0.33101824]
+ [0.50289565 0.25226325 0.244841  ]
+ [0.30623323 0.33771932 0.35604745]
+ [0.3774238  0.26943076 0.35314545]
+ [0.3230273  0.30424276 0.3727299 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_080_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_050_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_080_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_075_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_045_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_020_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_186_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_002_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_015_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_062_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_278_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_702_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_778_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_079_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_089_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_068_val_resized.jpg')"
+8,1.0181759595870972,"[[0.36377275 0.3188433  0.3173839 ]
+ [0.299923   0.31655413 0.38352287]
+ [0.3490208  0.28206235 0.36891675]
+ [0.3604609  0.28976816 0.34977072]
+ [0.29374844 0.39064455 0.31560695]
+ [0.30311218 0.36496586 0.33192194]
+ [0.3455116  0.3315959  0.32289255]
+ [0.38000226 0.36840397 0.2515937 ]
+ [0.34917557 0.35160947 0.29921505]
+ [0.34117994 0.2879033  0.3709169 ]
+ [0.33194903 0.40014407 0.26790693]
+ [0.3251759  0.429038   0.24578609]
+ [0.38100535 0.28732574 0.3316689 ]
+ [0.32484293 0.37915954 0.2959976 ]
+ [0.34492418 0.40557498 0.2495008 ]
+ [0.31088874 0.34067875 0.34843254]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_664_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_073_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_008_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_084_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_025_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_078_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_055_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_033_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_386_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_069_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_027_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_221_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_021_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_079_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_334_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_010_val_resized.jpg')"
+9,1.0105600357055664,"[[0.45902678 0.21461056 0.3263626 ]
+ [0.34602147 0.36368787 0.2902906 ]
+ [0.31243175 0.25005126 0.43751693]
+ [0.30862474 0.43227875 0.25909653]
+ [0.354416   0.3118553  0.3337287 ]
+ [0.36574867 0.3397739  0.29447746]
+ [0.3116709  0.2754044  0.4129247 ]
+ [0.363715   0.38867882 0.24760617]
+ [0.35085717 0.34466574 0.3044771 ]
+ [0.29113784 0.42704195 0.28182033]
+ [0.30312812 0.3626761  0.33419576]
+ [0.3214083  0.29000852 0.38858312]
+ [0.35609752 0.38381648 0.26008597]
+ [0.3361826  0.37519136 0.28862602]
+ [0.38000226 0.36840397 0.2515937 ]
+ [0.38100535 0.28732574 0.3316689 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_005_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_093_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_322_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_030_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_211_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_086_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_059_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_124_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_086_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_086_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_046_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_258_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_079_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_095_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_032_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_020_val_resized.jpg')"
+10,1.0038399696350098,"[[0.40455595 0.30298713 0.29245713]
+ [0.41084865 0.31469762 0.27445373]
+ [0.2830331  0.44509444 0.27187243]
+ [0.3172862  0.3450099  0.33770397]
+ [0.3652934  0.3726645  0.26204202]
+ [0.32325798 0.34846148 0.32828063]
+ [0.31159097 0.3874171  0.30099192]
+ [0.29415798 0.32733712 0.3785048 ]
+ [0.33986786 0.32192224 0.33820987]
+ [0.37434345 0.35377464 0.27188197]
+ [0.2979798  0.37391818 0.32810208]
+ [0.29361758 0.3558025  0.35057992]
+ [0.36095542 0.39289585 0.24614874]
+ [0.37590367 0.33534577 0.28875044]
+ [0.41076007 0.25801322 0.3312268 ]
+ [0.3365774  0.34006608 0.32335654]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_472_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_040_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_096_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_051_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_018_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_031_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_071_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_028_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_098_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_043_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_089_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_071_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_082_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_054_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_064_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_038_val_resized.jpg')"
+11,1.021183967590332,"[[0.34177223 0.36688074 0.29134697]
+ [0.4260595  0.32917607 0.24476442]
+ [0.27621633 0.38324594 0.34053773]
+ [0.31783602 0.38631043 0.29585353]
+ [0.3221107  0.36928603 0.3086032 ]
+ [0.37426257 0.39046416 0.23527327]
+ [0.29397178 0.36751267 0.3385156 ]
+ [0.31862167 0.4060272  0.27535117]
+ [0.36828724 0.37637842 0.25533438]
+ [0.39192587 0.36917046 0.23890351]
+ [0.3173488  0.3503008  0.33235043]
+ [0.30771637 0.41869146 0.27359217]
+ [0.35643384 0.32710403 0.3164621 ]
+ [0.40174773 0.30617905 0.29207325]
+ [0.324903   0.3956379  0.27945897]
+ [0.28666654 0.40435314 0.3089803 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_078_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_031_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_590_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_009_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_611_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_554_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_410_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_438_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_543_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_549_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_368_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_033_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_092_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_406_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_175_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_025_val_resized.jpg')"
+12,1.0124160051345825,"[[0.39267024 0.34873742 0.25859234]
+ [0.4263671  0.30082622 0.27280676]
+ [0.27293515 0.3742976  0.35276732]
+ [0.42293677 0.28818023 0.28888294]
+ [0.32572064 0.31497455 0.3593048 ]
+ [0.41029912 0.35414588 0.23555507]
+ [0.28554767 0.36718732 0.34726503]
+ [0.49169067 0.29065102 0.21765833]
+ [0.29646868 0.38281038 0.32072094]
+ [0.31985453 0.39757967 0.28256592]
+ [0.37266997 0.30832857 0.31900162]
+ [0.35251337 0.3595744  0.2879122 ]
+ [0.30664366 0.37434775 0.3190086 ]
+ [0.38420114 0.35220304 0.26359576]
+ [0.32849285 0.31454945 0.35695776]
+ [0.40300846 0.33769166 0.25929978]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_026_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_078_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_029_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_573_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_058_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_887_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_016_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_027_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_749_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_014_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_029_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_000_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_036_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_019_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_193_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_090_val_resized.jpg')"
+13,1.0060160160064697,"[[0.3307318  0.3504979  0.31877026]
+ [0.3580567  0.2616188  0.38032454]
+ [0.28500763 0.3651952  0.34979725]
+ [0.3556604  0.38705727 0.2572823 ]
+ [0.3785953  0.35417733 0.2672274 ]
+ [0.4183218  0.23390481 0.3477735 ]
+ [0.34936777 0.36893556 0.28169668]
+ [0.3448458  0.36635792 0.2887963 ]
+ [0.29933533 0.39579958 0.30486506]
+ [0.31352362 0.3540557  0.33242065]
+ [0.3887027  0.2898394  0.32145795]
+ [0.37549037 0.33889535 0.28561428]
+ [0.35684857 0.34225756 0.30089384]
+ [0.36268803 0.32170403 0.31560788]
+ [0.30483454 0.33400357 0.36116195]
+ [0.37666795 0.35708502 0.266247  ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_881_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_576_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_011_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_061_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_042_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_053_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_546_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_515_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_028_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_203_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_662_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_153_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_842_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_251_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_039_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_089_val_resized.jpg')"
+14,1.0046080350875854,"[[0.33969525 0.3448354  0.3154694 ]
+ [0.30036953 0.41243958 0.2871909 ]
+ [0.4053333  0.26048127 0.33418545]
+ [0.3124022  0.349859   0.3377388 ]
+ [0.31811172 0.36288288 0.31900534]
+ [0.38602298 0.28588417 0.32809278]
+ [0.36294374 0.34963226 0.28742403]
+ [0.32558042 0.25832993 0.41608965]
+ [0.3903387  0.31234992 0.29731137]
+ [0.3891044  0.29990566 0.31098986]
+ [0.37692392 0.31987083 0.30320516]
+ [0.3263156  0.28984386 0.38384056]
+ [0.39259416 0.31639433 0.2910115 ]
+ [0.31017932 0.40545365 0.28436708]
+ [0.41767642 0.30064008 0.28168344]
+ [0.3178149  0.35026103 0.331924  ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_627_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_662_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_306_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_068_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_091_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_037_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_457_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_381_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_224_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_048_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_074_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_014_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_076_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_099_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_121_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_087_val_resized.jpg')"
+15,1.0063999891281128,"[[0.3725286  0.35506266 0.27240872]
+ [0.30910462 0.34893188 0.34196353]
+ [0.3280526  0.36496314 0.30698422]
+ [0.33738977 0.26630163 0.39630848]
+ [0.47553283 0.31028035 0.21418685]
+ [0.35540375 0.41455105 0.23004527]
+ [0.42886323 0.29700157 0.2741352 ]
+ [0.30042616 0.33816794 0.36140585]
+ [0.3058718  0.39356974 0.30055845]
+ [0.39399397 0.28251705 0.3234889 ]
+ [0.30636376 0.39322224 0.3004141 ]
+ [0.33972496 0.3243987  0.33587635]
+ [0.34215763 0.3691969  0.28864548]
+ [0.38743606 0.35485986 0.25770414]
+ [0.4586417  0.32083946 0.22051883]
+ [0.3886469  0.35125428 0.26009887]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_251_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_041_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_841_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_701_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_445_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_881_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_066_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_361_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_081_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_616_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_863_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_026_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_041_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_644_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_063_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_810_resized.jpg')"
+16,1.0191359519958496,"[[0.3578564  0.38460565 0.25753796]
+ [0.32924557 0.38984147 0.2809131 ]
+ [0.3856076  0.3667197  0.24767266]
+ [0.30461773 0.37486625 0.32051605]
+ [0.34814692 0.3042443  0.3476088 ]
+ [0.35886982 0.29202303 0.34910727]
+ [0.35805586 0.2902979  0.35164618]
+ [0.34483635 0.32531726 0.3298464 ]
+ [0.27847478 0.34764773 0.37387756]
+ [0.32597324 0.33852017 0.3355066 ]
+ [0.28343004 0.39911017 0.31745985]
+ [0.3078914  0.41266212 0.27944654]
+ [0.3748096  0.3336831  0.29150733]
+ [0.3716191  0.3469907  0.28139007]
+ [0.36586475 0.3132408  0.3208944 ]
+ [0.40604663 0.32585818 0.2680952 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_075_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_091_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_049_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_127_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_003_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_365_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_133_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_057_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_083_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_060_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_731_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_012_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_092_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_007_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_076_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_610_resized.jpg')"
+17,1.0321279764175415,"[[0.4010091  0.3164615  0.2825294 ]
+ [0.39398456 0.31056508 0.29545033]
+ [0.28357092 0.41151756 0.30491143]
+ [0.43938455 0.42883742 0.1317781 ]
+ [0.2982984  0.4312146  0.27048695]
+ [0.3767678  0.352171   0.27106118]
+ [0.34418854 0.35010034 0.30571106]
+ [0.36636335 0.35658652 0.27705008]
+ [0.36922365 0.37534136 0.25543496]
+ [0.316593   0.31611365 0.36729345]
+ [0.34100103 0.37708816 0.28191078]
+ [0.3703061  0.3855681  0.24412574]
+ [0.28335613 0.3919953  0.32464844]
+ [0.32463273 0.3633801  0.31198722]
+ [0.29401684 0.36958557 0.33639768]
+ [0.39531362 0.3572767  0.24740963]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_007_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_455_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_053_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_065_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_724_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_043_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_245_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_032_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_009_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_756_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_008_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_069_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_074_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_664_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_047_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_011_resized.jpg')"
+18,1.0061440467834473,"[[0.3716191  0.3469907  0.28139007]
+ [0.38161668 0.39367267 0.22471064]
+ [0.33199623 0.33261237 0.3353915 ]
+ [0.3629515  0.399349   0.23769946]
+ [0.35599062 0.36593112 0.27807817]
+ [0.34814692 0.3042443  0.3476088 ]
+ [0.31935877 0.34778255 0.33285877]
+ [0.35946873 0.36728075 0.2732505 ]
+ [0.41770682 0.28013882 0.30215442]
+ [0.3822947  0.2869568  0.33074853]
+ [0.36820415 0.3592195  0.27257624]
+ [0.37425795 0.32095405 0.30478796]
+ [0.40836713 0.36532268 0.2263101 ]
+ [0.54221535 0.21565785 0.24212682]
+ [0.43188438 0.3176088  0.2505067 ]
+ [0.38083464 0.2935404  0.32562488]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_008_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_577_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_049_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_029_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_606_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_004_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_056_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_087_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_120_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_720_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_064_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_658_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_065_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_029_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_095_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_216_resized.jpg')"
+19,1.000383973121643,"[[0.36864334 0.33955163 0.29180497]
+ [0.36541346 0.3853859  0.24920063]
+ [0.40947768 0.3119434  0.278579  ]
+ [0.38023114 0.27652293 0.34324586]
+ [0.29672313 0.34646502 0.35681182]
+ [0.3019362  0.3787293  0.31933442]
+ [0.35747156 0.3245845  0.31794387]
+ [0.33956316 0.38295585 0.27748096]
+ [0.30483454 0.33400357 0.36116195]
+ [0.33142555 0.30898094 0.3595935 ]
+ [0.3514716  0.3297101  0.3188183 ]
+ [0.3557226  0.321148   0.32312945]
+ [0.33866298 0.23955    0.42178705]
+ [0.29892507 0.3096171  0.3914579 ]
+ [0.4291309  0.3278201  0.24304904]
+ [0.26934657 0.40558708 0.32506642]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_077_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_542_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_237_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_276_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_031_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_372_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_804_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_075_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_022_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_189_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_274_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_378_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_018_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_052_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_093_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_543_resized.jpg')"
+20,1.0024319887161255,"[[0.32990956 0.35914624 0.31094426]
+ [0.3998156  0.3262944  0.27389005]
+ [0.47461408 0.26597446 0.25941145]
+ [0.32423064 0.35130805 0.32446128]
+ [0.31740215 0.3750963  0.30750158]
+ [0.34984863 0.4238434  0.22630788]
+ [0.38863719 0.35712782 0.254235  ]
+ [0.31740215 0.3750963  0.30750158]
+ [0.33672577 0.38578573 0.2774885 ]
+ [0.3250416  0.34886283 0.3260957 ]
+ [0.33334607 0.37761772 0.2890362 ]
+ [0.40230387 0.24885346 0.34884277]
+ [0.28485882 0.3973218  0.31781933]
+ [0.35331297 0.32526046 0.32142657]
+ [0.35939336 0.40925547 0.23135106]
+ [0.3592964  0.34047303 0.30023047]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_059_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_871_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_091_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_082_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_043_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_852_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_200_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_026_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_327_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_070_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_351_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_372_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_671_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_014_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_670_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_030_resized.jpg')"
+21,1.0072959661483765,"[[0.39309117 0.33801952 0.2688894 ]
+ [0.30419338 0.32420397 0.37160262]
+ [0.3787851  0.3585116  0.26270324]
+ [0.4318463  0.29387528 0.27427855]
+ [0.3287449  0.33082372 0.34043145]
+ [0.25502115 0.36824667 0.37673214]
+ [0.35663468 0.3376838  0.30568147]
+ [0.3136799  0.34221047 0.3441096 ]
+ [0.3058919  0.3442164  0.34989172]
+ [0.3007787  0.4016079  0.29761347]
+ [0.2939438  0.38285857 0.32319772]
+ [0.41807038 0.3464975  0.23543213]
+ [0.39528888 0.3163681  0.28834307]
+ [0.33061352 0.3811429  0.28824347]
+ [0.35933515 0.37070835 0.26995653]
+ [0.3383945  0.33956915 0.3220364 ]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_018_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_609_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_091_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_051_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_036_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_022_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_010_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_044_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_196_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_002_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_580_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_012_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_735_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_047_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_099_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_151_resized.jpg')"
+22,1.0103039741516113,"[[0.30613285 0.37527525 0.3185919 ]
+ [0.406451   0.26213628 0.33141276]
+ [0.27298632 0.31427073 0.41274297]
+ [0.31750852 0.3173238  0.36516777]
+ [0.45612034 0.25091982 0.29295993]
+ [0.3161267  0.38899004 0.29488325]
+ [0.34236643 0.34281963 0.31481403]
+ [0.4018273  0.3165589  0.28161386]
+ [0.39735025 0.3468093  0.25584048]
+ [0.318439   0.30887526 0.3726857 ]
+ [0.35642627 0.36990875 0.273665  ]
+ [0.36343443 0.40263596 0.2339295 ]
+ [0.35192797 0.29931763 0.34875438]
+ [0.41634455 0.31004646 0.27360907]
+ [0.34139147 0.38105145 0.2775571 ]
+ [0.30312812 0.3626761  0.33419576]]","('/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_788_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_803_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_072_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_060_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_207_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_034_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_090_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_552_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_548_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_419_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_819_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_006_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_037_val_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Cheetah/cheetah_758_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Tiger/tiger_541_resized.jpg', '/home/ubuntu/Optimization/TVM/../Dataset/validation/Hyena/hyena_038_val_resized.jpg')"
