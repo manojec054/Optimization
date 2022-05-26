@@ -24,7 +24,7 @@ def autotvm_tune(mod, params, input_shape, log_prefix, dtype='float32', target=t
     tuning_opt = {
         "log_filename": kernel_log,
         "tuner": "xgb",
-        "n_trial": 200,
+        "n_trial": 20,
         "early_stopping": 600,
         "use_transfer_learning": True,
         "measure_option": autotvm.measure_option(
