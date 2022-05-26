@@ -105,7 +105,7 @@ class CustomAnimalClassLoader(torch.utils.data.Dataset):
                 
         pil_img = Image.open(self.images[index])
         img = my_preprocess2(pil_img)
-        lbl = torch.tensor(self.labels[index], dtype=torch.long)
+        lbl = torch.tensor(self.labels[index], dtype=torch.int)
         filename = self.images[index]
 
         return img, lbl, filename    
